@@ -31,4 +31,18 @@ public class BinarySearchandSearchingExercises {
         Arrays.sort(arr);
         return arr[arr.length-1];
     }
+    //Given an array of positive integers arr[] of size n, the task is to find second largest distinct element in the array.
+    /*
+     * What I came up with for this exercise is to sort the array. Once that’s done, we’ll iterate in reverse starting from index n-2.
+     * Remember that there can be duplicates, so we check if the current number is different from the last one (at index n-1). If it
+     * is, then we’ve found the second largest number.
+     */
+    public int getSecondLargest(int[] arr) {
+        Arrays.sort(arr);
+        int n=arr.length;
+        for(int i=n-2;i>=0;i--){
+            if(arr[i]!=arr[n-1])return arr[i];
+        }
+        return -1;
+    }
 }
