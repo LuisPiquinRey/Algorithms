@@ -1,4 +1,6 @@
-public class BinarySearch {
+import java.util.Arrays;
+
+public class BinarySearchandSearchingExercises {
     public static void main(String[] args){
 
     }
@@ -20,5 +22,13 @@ public class BinarySearch {
             else start=mid+1;
         }
         return false;
+    }
+    //Given an array arr. The task is to find the largest element in the given array.
+    /*
+     * What I came up with for this problem is simply to sort the array so that the last element is the largest within the collection.
+     */
+    public static int largest(int[] arr) {
+        Arrays.sort(arr);
+        return arr[arr.length-1];
     }
 }
