@@ -45,4 +45,23 @@ public class BinarySearchandSearchingExercises {
         }
         return -1;
     }
+    /*
+     * Given an array arr[] of size n-1 with distinct integers in the range of [1, n]. This array represents a permutation of the integers from
+     * 1 to n with one element missing. Find the missing element in the array.
+     * 
+     * For this exercise, I’m using the XOR operator. The XOR operator (^), short for exclusive OR, is a bitwise operator that compares two binary
+     *  values bit by bit and returns 1 if the bits are different and 0 if they are the same.
+     */
+    public static int missingNum(int arr[]) {
+        int n = arr.length;
+        int xorAll = 0;
+        int xorArr = 0;
+        for (int i = 0; i <= n; i++) {
+            xorAll ^= i;
+        }
+        for (int i = 0; i < n; i++) {
+            xorArr ^= arr[i];
+        }
+        return xorAll ^ xorArr;
+    }
 }
