@@ -64,4 +64,13 @@ public class BinarySearchandSearchingExercises {
         }
         return xorAll ^ xorArr;
     }
+    //Given a binary array arr[] of size n, which is sorted in non-increasing order, count the number of 1's in it.
+
+    /*
+     * What I came up with to solve this exercise is to use the Stream class to filter out the numbers that are different
+     * from one, and then perform a count.
+     */
+    public int countOne(int arr[]){
+        return (int)Arrays.stream(arr).filter(p->p==1).count();
+    }
 }
