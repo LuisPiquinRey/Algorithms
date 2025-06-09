@@ -2,11 +2,11 @@ import java.util.Arrays;
 
 public class BinarySearchandSearchingExercises {
     public static void main(String[] args){
-
+        System.out.println(findPair(new int[]{1,2,-3,4,-1}, 3));
     }
     /*
      * Welcome user! Today we will talk about one of the easiest yet most important algorithms to learn.
-     * 
+     *
      * Alright, the Binary Search algorithm follows a simple rule: the array must be sorted. Once this is done, it follows
      * very basic principles — subdividing the data collection into two partitions (dividing it in half). What we do is find
      * out which half contains the target. If the element is greater than arr[mid], that means the target we are looking for must
@@ -48,7 +48,7 @@ public class BinarySearchandSearchingExercises {
     /*
      * Given an array arr[] of size n-1 with distinct integers in the range of [1, n]. This array represents a permutation of the integers from
      * 1 to n with one element missing. Find the missing element in the array.
-     * 
+     *
      * For this exercise, I’m using the XOR operator. The XOR operator (^), short for exclusive OR, is a bitwise operator that compares two binary
      *  values bit by bit and returns 1 if the bits are different and 0 if they are the same.
      */
@@ -72,5 +72,26 @@ public class BinarySearchandSearchingExercises {
      */
     public int countOne(int arr[]){
         return (int)Arrays.stream(arr).filter(p->p==1).count();
+    }
+    /*
+     * Given an unsorted array and an integer x, the task is to find if there exists a pair of elements in the array whose
+     * absolute difference is x.
+     * 
+     * For solving this exercise, I thought of using the two-pointer technique; depending on the sum, I either move the left
+     * pointer forward or the right pointer backward.
+     */
+    public static boolean findPair(int[] arr, int x) {
+        Arrays.sort(arr);
+        int i = 0, j = 1;
+        while (i < arr.length && j < arr.length) {
+            if (i != j && Math.abs(arr[j] - arr[i]) == x) {
+                return true;
+            } else if (Math.abs(arr[j] - arr[i]) < x) {
+                j++;
+            } else {
+                i++;
+            }
+        }
+        return false;
     }
 }
