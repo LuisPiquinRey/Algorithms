@@ -70,4 +70,56 @@ public class StringExercises {
         }
         return true;
     }
+       //Given a string S, the task is to find the length of the longest substring between any pair of occurrences of same charactersAdd commentMore actions
+    /*
+     * What comes to mind at first is to use the two-pointer strategy — a start and an end — such that start moves from the first index
+     * to the right, and end moves from the end to the left. When we find the first match, it means we have found the longest matching
+     * substring.
+     * 
+     * Welcome, user. To solve this exercise, we need to understand the KMP algorithm. First, we must discuss the LPS table, which is
+     * constructed based on the prefixes and suffixes found in the text (txt). Once the LPS table is built, the rest of the algorithm is
+     * relatively straightforward. We use two pointers: one for the pattern (i) and one for the text (j). The pointer i is ahead of j. When
+     * characters match, we move both pointers to the right. However, when there is a mismatch, we refer to the LPS table: we move the pattern
+     * pointer to the index indicated by the LPS value at the mismatch position and evaluate again. If there is still no match and we are already
+     * at index 0 in the LPS, we shift the i pointer one step to the right and repeat the process.
+     */
+    public static int[] tableLPS(String pattern){
+        int i=1;
+        int len=0;
+        int[] lps=new int[pattern.length()];
+        while(i<pattern.length()){
+            if(pattern.charAt(i)==pattern.charAt(len)){
+                len++;
+                lps[i]=len;
+                i++;
+            }else{
+                if(len!=0){
+                    len=lps[len-1];
+                }else{
+                    lps[i]=0;
+                    i++;
+                }
+            }
+        }
+        return lps;
+    }
+    public static void KPMAlgorithm(String txt,String pattern){
+        int i=0;
+        int j=0;
+        int[] lps=tableLPS(pattern);
+        if(txt.charAt(i)==pattern.charAt(j)){
+            i++;
+            j++;
+        }
+        if(j==pattern.length()){
+            System.out.println("I found the pattern");
+            j=lps[j-1];
+        }else if(i<txt.length() && txt.charAt(i)!=pattern.charAt(j)){
+            if(j!=0){
+                j=lps[j-1];
+            }else{
+                i++;
+            }
+        }
+    }
 }
